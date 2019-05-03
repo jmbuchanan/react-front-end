@@ -11,6 +11,8 @@ export function Application() {
 
 	    <h1>Applications</h1>
 
+	    <p>This section is in progress.</p>
+
           </div>
 	  <div class="r"></div>
         </div>

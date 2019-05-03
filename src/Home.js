@@ -14,6 +14,7 @@ export function Home() {
 	  </div>
 	  <div className="m">
 	    <p>Welcome to the homepage.</p>
+	    <p>Check out the source code here: <a href="https://github.com/jmbuchanan">GitHub</a></p>
           </div>
 	  <div className="r"></div>
         </div>

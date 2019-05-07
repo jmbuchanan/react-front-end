@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import './style.css';
 
-import Tutorial from './Tutorial';
-import Admin from './Admin';
-import { Application } from './Application';
-import { Home } from './Home';
+import Tutorial from './tutorials/Tutorial';
+import Admin from './admin/Admin';
+import { Application } from './applications/Application';
+import Auctions from './applications/wow-auctions/Auctions';
+import { Home } from './home/Home';
 
 
 
@@ -26,7 +28,8 @@ export function App() {
 				<Route exact path="/" component={Home} />
 				<Route path="/java" component={Tutorial} />
 				<Route path="/spring" component={Tutorial} />
-				<Route path="/apps" component={Application} />
+				<Route path="/apps/auctions" component={Auctions} />
+				<Route exact path="/apps" component={Application} />
 				<Route path="/admin" component={Admin} />
 			</div>
 		</Router>

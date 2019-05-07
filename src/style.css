@@ -75,6 +75,11 @@ ul.header-right li {
 	  display: none;
   }
 
+  svg {
+	  width:100%;
+
+  }
+
 
 }
 img#background {
@@ -121,6 +126,7 @@ pre {
   line-height: 1.5;
   background-color: #f5f5f5;
   border: 1px solid #cccccc;
+  white-space: pre-wrap;
 }
 
 div#root {

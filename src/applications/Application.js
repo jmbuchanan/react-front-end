@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export function Application() {
 
@@ -12,6 +12,7 @@ export function Application() {
 	    <h1>Applications</h1>
 
 	    <p>This section is in progress.</p>
+	    <p><Link to="/apps/auctions">WoW Auctions</Link></p>
 
           </div>
 	  <div class="r"></div>

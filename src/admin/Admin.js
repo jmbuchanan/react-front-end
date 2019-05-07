@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import AddSectionTemplate from './AddSectionTemplate';
-import DeleteSectionTemplate from './DeleteSectionTemplate';
-import AddContentTemplate from './AddContentTemplate';
-import DeleteContentTemplate from './DeleteContentTemplate';
+import AddSectionTemplate from './templates/AddSectionTemplate';
+import DeleteSectionTemplate from './templates/DeleteSectionTemplate';
+import AddContentTemplate from './templates/AddContentTemplate';
+import DeleteContentTemplate from './templates/DeleteContentTemplate';
 
 function capitalizeFirstLetter(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1); 

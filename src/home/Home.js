@@ -12,7 +12,15 @@ export function Home() {
 	     <img id="profile" src="img/profile.png" alt="Profile picture"/>
 	  </div>
 	  <div className="m">
-	    <p>Welcome to the homepage.</p>
+	    <h1>About MicroArk</h1>
+	    <p>MicroArk is a website built with a modern stack of web development 
+	    tools. It is a project that I started with the goal of learning about 
+	    how websites work today. This site relies on Spring Boot as the back 
+	    end for the tutorial sections-- Java and Spring-- and Flask as the 
+	    back end for the Auctions app. The front end is 
+	    built with React.
+	    The site is currently hosted on an Ubuntu 18.04 machine with NGINX as 
+	    the HTTP server and the data is maintained in a PostgreSQL database.</p>
 	    <p>Check out the source code here: <a href="https://github.com/jmbuchanan">GitHub</a></p>
           </div>
 	  <div className="r"></div>

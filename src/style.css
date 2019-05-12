@@ -49,10 +49,16 @@ ul.header-right li {
  color: #c8ffc8;
 }
 
-@media screen and (max-width: 700px) {
+@media (max-width: 700px) {
 
   div.header * {
 	  display: block;
+  }
+
+  div.header {
+    background-color:#1d4c30;
+    padding: 15px 10%;
+    overflow: hidden;
   }
 
   div.header-right {
@@ -75,11 +81,20 @@ ul.header-right li {
 	  display: none;
   }
 
-  svg {
-	  width:100%;
-
+  .row div.l {
+	  width: 10%;
+	  float: left;
   }
 
+  .row div.m {
+	  width: 80%;
+	  float: left;
+  }
+
+  .row div.r {
+	  width: 10%;
+	  float: left;
+  }
 
 }
 img#background {
@@ -120,6 +135,10 @@ p, h1, h2, h3, hr {
   line-height: 1.5;
 }
 
+a {
+  text-decoration: none;
+}
+
 pre {
   display: block;
   padding: 10px;
@@ -127,6 +146,11 @@ pre {
   background-color: #f5f5f5;
   border: 1px solid #cccccc;
   white-space: pre-wrap;
+}
+
+table {
+	width: 100%;
+	text-align: left;
 }
 
 div#root {

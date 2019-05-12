@@ -35,11 +35,15 @@ class Auctions extends Component {
 		return (
 			<div>
 			<h1>WoW Auction Application</h1>
-			<p>This application pulls auction data from the Blizzard API hourly. It tracks
-			  the price of the newest commodities that were added with the latest 
-			  expansion, Battle for Azeroth. I decided to pull the data from the 
-			  Korgath server, because it is the server that I have played on historically. 
-			  The prices on the graph below are a daily average. </p>
+			<p>This application tracks commodity prices in the latest expansion of World of Warcraft.
+			  I use the Python Requests library to pull auction data from the Blizzard API hourly, 
+			  SQL to transform the data, a Flask endpoint to serve the JSON 
+			  (<a href="/flaskapi/auctions">/flaskapi/auctions</a>), and the D3.js library for visualization.
+			  The data is from the Korgath server and the prices in the line chart are shown as 
+			  a daily average.</p>
+			<h2>Historic Commodity Prices</h2>
+		        <hr/>
+			<br/>
 			</div>
 		);
 	}
@@ -69,6 +73,9 @@ class Auctions extends Component {
 			<select value={this.state.category} onChange={(e) => this.handleChange(e)} >
 			  {renderCategories}
 			</select>
+			<br/>
+			<br/>
+			<br/>
 			</div>
 		);
 
@@ -138,51 +145,47 @@ class Auctions extends Component {
 		let items = this.getItemsByCategory();
 		let names = this.getItemNames(items);
 		
-		
-		 
-                // setting dimensions and padding for graph
-                var margin = {top: 10, right: 30, bottom: 40, left: 60},
-                        width = 600- margin.left - margin.right,
-                        height = 600/1.8 - margin.top - margin.bottom;
-
 
                 // create svg container with g inside. Transform, translate creates padding
                 // for the graph within the svg container
 
 		d3.select("svg").remove();
 
-
                 var svg = d3.select(".graph")
                         .append("svg")
-                                .attr("width", width + margin.left + margin.right)
-                                .attr("height", height + margin.top + margin.bottom + 30*names.length)
+				.attr("viewBox", "0 0 500 275")
+                                .attr("width", "100%")
+				.attr("max-width", "500px")
                         .append("g")
-                                .attr("transform",
-                                        "translate(" + margin.left + "," + margin.top + ")");
+                                .attr("transform", "translate(35, 25)");
 
                 const tParser = d3.timeParse('%m/%d/%Y')
 
                 //Add x axis as date
                 var x = d3.scaleTime()
                         .domain(d3.extent(this.state.data, function(d) {return tParser(d.date)}))
-                        .range([0, width]);
+                        .range([0, 370]);
                 
 		svg.append("g")
-                        .attr("transform", "translate(0," + height + ")")
-			.attr("width", width)
+                        .attr("transform", "translate(0, 175)")
+			.attr("width", 370)
                         .call(d3.axisBottom(x)
                                 .tickFormat(d3.timeFormat("%m-%d"))
                                 .ticks(d3.timeDay))
                         .selectAll("text")
-                                .attr("transform", "rotate(-70) translate(-25, -5)");
+                                .attr("transform", "rotate(-60) translate(-20, 0)")
+				.attr("font-size", 8);
 
                 //Add y axis as price
                 var y = d3.scaleLinear()
                         .domain(d3.extent(items, function(d) {return d.price}))
-                        .range([ height, 0 ]);
+                        .range([ 175, 0 ]);
                 
 		svg.append("g")
-                        .call(d3.axisLeft(y));
+                        .call(d3.axisLeft(y))
+			.selectAll("text")
+			.attr("font-size", 8);
+
 
 		for (var i = 0; i < names.length; i++) {
 
@@ -192,7 +195,7 @@ class Auctions extends Component {
 				.datum(data)
 				.attr("fill", "none")
 				.attr("stroke", COLORS[i])
-				.attr("stroke-width", 2)
+				.attr("stroke-width", 1)
 				.attr("d", d3.line()
 					.x(function(d) { return x(tParser(d.date)) })
 					.y(function(d) { return y(d.price) }));
@@ -205,20 +208,144 @@ class Auctions extends Component {
 
 		legend.append("rect")
 			.attr("fill", function(d, i) {return COLORS[i]})
-			.attr("width", 10)
-			.attr("height", 15)
-			.attr("y", function(d, i) {return height + margin.top + margin.bottom + 20*i});
+			.attr("width", 7)
+			.attr("height", 7)
+			.attr("x", 385)
+			.attr("y", function(d, i) {return 12.5*i + 25});
+
 
 		legend.append("text")
-			.attr("y", function(d, i) {return height + margin.top + margin.bottom + 14 + 20*i})
-			.attr("x", 20)
+			.attr("x",  395)
+			.attr("y", function(d, i) {return 12.5*i + 31.5})
+			.attr("font-size", 8)
 			.text(function(d, i) {return names[i]});
 
 
 	}
 
+
+	getCurrent(item){
+
+		let data = this.getItemData(item);
+
+		return data[data.length -1].price;
+	}
+
+			
+
+	
+
+	getHigh(item) {
+
+		let data = this.getItemData(item);
+
+		let high = 0;
+
+		for (var i = 0; i < data.length; i++) {
+			if (data[i].price > high) {
+				high = data[i].price;
+			}
+		}
+
+		return high;
+
+	}
+
+	getLow(item) {
+
+		let data = this.getItemData(item);
+
+		let low;
+
+		for (var i = 0; i < data.length; i++) {
+			if (i == 0) {
+				low = data[i].price;
+			}
+			if (data[i].price < low) {
+				low = data[i].price;
+			}
+		}
+
+		return low;
+
+	}
+
+
+	getAverage(item) {
+
+		let data = this.getItemData(item);
+
+		let total = 0;
+
+		for (var i = 0; i < data.length; i++) {
+			total += data[i].price;
+		}
+
+		let average = total / data.length;
+
+		return average.toFixed(0);
+
+	}
+
+	renderTable() {
+
+		if (this.state.data.length == 0) {
+			return null;
+		}
+
+
+		let items = this.getItemsByCategory();
+		let names = this.getItemNames(items);
+
+		//Current, high, low, 2-wk average
+	
+
+		let tables = [];
+
+		const header = (
+			<tr>
+				<th>Item</th>
+				<th>Current</th>
+				<th>High</th>
+				<th>Low</th>
+				<th>2-wk Avg</th>
+			</tr>
+		);
+
+		tables.push(header);
+
+		for (var i = 0; i < names.length; i++) {
+			let name = names[i];
+			let current = this.getCurrent(name);
+			let high = this.getHigh(name);
+			let low = this.getLow(name);
+			let average = this.getAverage(name);
+
+			let jsx = (
+				<tr>
+				  <td>{name}</td>
+				  <td>{current}</td>
+				  <td>{high}</td>
+				  <td>{low}</td>
+				  <td>{average}</td>
+				</tr>
+			);
+
+			tables.push(jsx);
+		}
+
+		return (
+			<div>
+			<table>
+			{tables}
+			</table>
+			</div>
+		);
+
+
+	}
+
 	render() {
-		
 		return (
 		      <div className="App">
 			<div className="row">
@@ -228,6 +355,7 @@ class Auctions extends Component {
 			    {this.renderCategoryDropDown()}
 			    {this.renderGraph()}
 			    <div className="graph"></div>
+			    {this.renderTable()}
 			  </div>
 			  <div className="r"></div>
 			</div>

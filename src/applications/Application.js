@@ -11,9 +11,11 @@ export function Application() {
 
 	    <h1>Applications</h1>
 
-	    <p>This section is in progress.</p>
-	    <p><Link to="/apps/auctions">WoW Auctions</Link></p>
+	    <p>Here is a list of applications that I have built:</p>
 
+	    <ul>
+	    <li><Link to="/apps/auctions">WoW Auction Application</Link></li>
+	    </ul>
           </div>
 	  <div class="r"></div>
         </div>

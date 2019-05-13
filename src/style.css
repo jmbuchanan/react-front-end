@@ -96,6 +96,10 @@ ul.header-right li {
 	  float: left;
   }
 
+  td, th {
+	  font-size: 25%;
+  }
+
 }
 img#background {
   width: 100%;

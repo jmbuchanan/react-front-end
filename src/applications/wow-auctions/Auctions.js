@@ -300,7 +300,7 @@ class Auctions extends Component {
 		//Current, high, low, 2-wk average
 	
 
-		let tables = [];
+		let table = [];
 
 		const header = (
 			<tr>
@@ -312,7 +312,7 @@ class Auctions extends Component {
 			</tr>
 		);
 
-		tables.push(header);
+		table.push(header);
 
 		for (var i = 0; i < names.length; i++) {
 			let name = names[i];
@@ -321,23 +321,23 @@ class Auctions extends Component {
 			let low = this.getLow(name);
 			let average = this.getAverage(name);
 
-			let jsx = (
+			let row = (
 				<tr>
 				  <td>{name}</td>
-				  <td>{current}</td>
-				  <td>{high}</td>
-				  <td>{low}</td>
-				  <td>{average}</td>
+				  <td>{current + "g"}</td>
+				  <td>{high + "g"}</td>
+				  <td>{low + "g"}</td>
+				  <td>{average + "g"}</td>
 				</tr>
 			);
 
-			tables.push(jsx);
+			table.push(row);
 		}
 
 		return (
 			<div>
 			<table>
-			{tables}
+			{table}
 			</table>
 			</div>
 		);

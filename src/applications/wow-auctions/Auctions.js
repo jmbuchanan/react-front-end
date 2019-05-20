@@ -210,12 +210,12 @@ class Auctions extends Component {
 			.attr("fill", function(d, i) {return COLORS[i]})
 			.attr("width", 7)
 			.attr("height", 7)
-			.attr("x", 385)
+			.attr("x", 384)
 			.attr("y", function(d, i) {return 12.5*i + 25});
 
 
 		legend.append("text")
-			.attr("x",  395)
+			.attr("x",  394)
 			.attr("y", function(d, i) {return 12.5*i + 31.5})
 			.attr("font-size", 8)
 			.text(function(d, i) {return names[i]});

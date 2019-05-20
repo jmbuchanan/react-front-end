@@ -21,7 +21,8 @@ export function Home() {
 	    built with React.
 	    The site is currently hosted on an Ubuntu 18.04 machine with NGINX as 
 	    the HTTP server and the data is maintained in a PostgreSQL database.</p>
-	    <p>Check out the source code here: <a href="https://github.com/jmbuchanan">GitHub</a></p>
+	    <p>Check out the source code here: <a href="https://github.com/jmbuchanan" target="_blank">GitHub</a></p>
+	    <p>And my work experience here: <a href="/resume">Resume</a></p>
           </div>
 	  <div className="r"></div>
         </div>

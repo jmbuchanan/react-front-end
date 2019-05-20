@@ -7,6 +7,7 @@ import Admin from './admin/Admin';
 import { Application } from './applications/Application';
 import Auctions from './applications/wow-auctions/Auctions';
 import { Home } from './home/Home';
+import { Resume } from './home/Resume';
 
 
 
@@ -31,6 +32,8 @@ export function App() {
 				<Route path="/apps/auctions" component={Auctions} />
 				<Route exact path="/apps" component={Application} />
 				<Route path="/admin" component={Admin} />
+				<Route path="/resume" component={Resume} />
+
 			</div>
 		</Router>
 	)};

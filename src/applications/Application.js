@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export function Application() {
 
+	var _listStyle = {
+		listStyle: "none",
+	};
+
     return (
       <div>
         <div class="row">
@@ -14,7 +18,7 @@ export function Application() {
 	    <p>Here is a list of applications that I have built:</p>
 
 	    <ul>
-	    <li><Link to="/apps/auctions">WoW Auction Application</Link></li>
+	    <li style={_listStyle}><Link to="/apps/auctions">WoW Auction Application</Link></li>
 	    </ul>
           </div>
 	  <div class="r"></div>

@@ -84,7 +84,7 @@ export function Resume() {
 		<h2>Education</h2>
 		<hr/>
 		<h3>University of Georgia</h3>
-		<p><em>Bachelor of Business Administration, Finance (December 2015)</em></p>
+		<p><em>Bachelor of Business Administration, Finance (December 2014)</em></p>
 	    	
 		<h2>Other Interests</h2>
 	    	<hr/>

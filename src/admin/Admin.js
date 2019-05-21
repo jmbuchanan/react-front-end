@@ -6,10 +6,14 @@ import DeleteSectionTemplate from './templates/DeleteSectionTemplate';
 import AddContentTemplate from './templates/AddContentTemplate';
 import DeleteContentTemplate from './templates/DeleteContentTemplate';
 
+//Utility function
 function capitalizeFirstLetter(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1); 
 }
 
+
+//Dynamically renders forms to update or delete sections and contents within the site
+//This mostly handles the logic of which form to render. Forms found in "templates" directory
 
 class Form extends Component {
 	
@@ -20,13 +24,14 @@ class Form extends Component {
 		}
 	}
 
-	
+	//When an add/delete content/section button is selected, query api	
 	componentDidUpdate(prevProps) {
 		if (this.props.action !== prevProps.action || this.props.name != prevProps.name ) {
 			this.queryApi();
 		}
 	}
 
+	//need a better way to handle plural
 	queryApi() {
 
 	  const endpoint = 'http://www.microark.io/api/' + this.props.name + "s";
@@ -41,6 +46,7 @@ class Form extends Component {
         }
 
 
+	//button selection drives api call and resulting form
 	render() {
 
 		switch(this.props.action + " " + this.props.name) {

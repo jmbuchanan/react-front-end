@@ -6,6 +6,7 @@ class Tutorial extends Component {
 	  data: [],
   }
 
+  //Fetch content data
   componentDidMount() {
 
 	  const path = window.location.pathname.slice(1);

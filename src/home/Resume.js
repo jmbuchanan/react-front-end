@@ -41,7 +41,7 @@ export function Resume() {
 		<ul>
 		  <li><strong>Scripting:</strong> Java, Python, SQL, HTML, CSS, Javascript, VBScript, VBA</li>
 		  <li><strong>Frameworks:</strong> Spring Boot, React, Django, Flask, D3.js</li>
-	    	  <li><strong>RDBMs: </strong> PostgreSQL, SQLite, Microsoft Access</li>
+	    	  <li><strong>RDBMS: </strong> PostgreSQL, SQLite, Microsoft Access</li>
 		  <li><strong>Operating Systems:</strong> Ubuntu 18.04, Windows 10</li>
 		</ul>
 	    	

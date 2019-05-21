@@ -9,7 +9,7 @@ import Auctions from './applications/wow-auctions/Auctions';
 import { Home } from './home/Home';
 import { Resume } from './home/Resume';
 
-
+//Contains header of website and mappings for URLs to components
 
 export function App() {
 

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 
+//TODO: Refactor
 
 class Auctions extends Component {
-	
+
+	//this.state.category set to a default value so content renders 
+	//before option explicitly selected
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -48,6 +51,7 @@ class Auctions extends Component {
 		);
 	}
 
+	//pull unique categories from api call and render them as options in a dropdown
 	renderCategoryDropDown() {
 		if (this.state.data.length == 0) {
 			return null;
@@ -83,6 +87,7 @@ class Auctions extends Component {
 
 	}
 
+	//return a list of JSON records whose category matches current state category	
 	getItemsByCategory() {
 		
 		let dataByCategory = this.state.data;
@@ -99,6 +104,7 @@ class Auctions extends Component {
 
 	}
 
+	//Return a list of item names as string
 	getItemNames(items) {
 
 		let names = [];
@@ -113,6 +119,7 @@ class Auctions extends Component {
 		return names;
 	}
 
+	//Return a list of JSON elements by item name
 	getItemData(item) {
 		
 		let data = this.state.data;
@@ -191,6 +198,8 @@ class Auctions extends Component {
 
 			var data = this.getItemData(names[i]);
 
+			//draw price over time lines
+
 			svg.append("path")
 				.datum(data)
 				.attr("fill", "none")
@@ -201,11 +210,13 @@ class Auctions extends Component {
 					.y(function(d) { return y(d.price) }));
 		}
 
+		//create legend
 		let legend = svg.selectAll(".legend")
 			.data(names)
 			.enter()
 			.append("g");
 
+		//add colored rectangles to legend
 		legend.append("rect")
 			.attr("fill", function(d, i) {return COLORS[i]})
 			.attr("width", 7)
@@ -213,7 +224,7 @@ class Auctions extends Component {
 			.attr("x", 384)
 			.attr("y", function(d, i) {return 12.5*i + 25});
 
-
+		//add item name next to rectangles in legend
 		legend.append("text")
 			.attr("x",  394)
 			.attr("y", function(d, i) {return 12.5*i + 31.5})
@@ -223,6 +234,7 @@ class Auctions extends Component {
 
 	}
 
+	//Following methods are used when rendering table below graph
 
 	getCurrent(item){
 
@@ -314,6 +326,7 @@ class Auctions extends Component {
 
 		table.push(header);
 
+		//table data is in "g" because gold is the common denomination
 		for (var i = 0; i < names.length; i++) {
 			let name = names[i];
 			let current = this.getCurrent(name);
